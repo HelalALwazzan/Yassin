@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خدماتي الرقمية</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4e73df;
+            --secondary-color: #6f42c1;
+            --light-bg: #f8f9fa;
+            --dark-text: #343a40;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--dark-text);
+            line-height: 1.6;
+            padding: 20px;
+            background-color: #f5f7fb;
+        }
+        
+        .services-section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            margin-bottom: 40px;
+        }
+        
+        .section-title h2 {
+            font-weight: 700;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+        
+        .section-title h4 {
+            color: #6c757d;
+            font-weight: 400;
+        }
+        
+        .service-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-icon {
+            padding: 20px 0;
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+        }
+        
+        .service-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .service-content h5 {
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        .service-content p {
+            color: #6c757d;
+            flex-grow: 1;
+        }
+        
+        .service-features {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .service-features ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .service-features li {
+            padding: 5px 0;
+            position: relative;
+            padding-right: 20px;
+        }
+        
+        .service-features li::before {
+            content: "•";
+            color: var(--secondary-color);
+            font-weight: bold;
+            position: absolute;
+            right: 0;
+        }
+        
+        .services-categories {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .category-btn {
+            margin: 5px;
+            border-radius: 30px;
+            transition: all 0.3s;
+        }
+        
+        .category-btn:hover,
+        .category-btn.active {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+        }
+        
+        .toggle-features {
+            transition: all 0.3s;
+        }
+        
+        .toggle-features.collapsed i {
+            transform: rotate(0deg);
+        }
+        
+        .toggle-features:not(.collapsed) i {
+            transform: rotate(180deg);
+        }
+        
+        @media (max-width: 768px) {
+            .service-card {
+                margin-bottom: 20px;
+            }
+            
+            .category-btn {
+                margin: 3px;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <section id="services" class="services-section">
+        <div class="container">
+            <div class="section-title text-center">
+                <h2>خدماتي الرقمية</h2>
+                <h4>حلول مبتكرة ومتكاملة لتلبية جميع احتياجاتك في تطوير البرمجيات</h4>
+            </div>
+
+            <!-- فئات الخدمات -->
+            <div class="row text-center services-categories">
+                <div class="col-12">
+                    <button class="btn btn-outline-primary category-btn active" data-filter="all">الكل</button>
+                    <button class="btn btn-outline-primary category-btn" data-filter="web">تطوير الويب</button>
+                    <button class="btn btn-outline-primary category-btn" data-filter="mobile">تطبيقات الموبايل</button>
+                    <button class="btn btn-outline-primary category-btn" data-filter="desktop">برامج سطح المكتب</button>
+                    <button class="btn btn-outline-primary category-btn" data-filter="database">قواعد البيانات</button>
+                    <button class="btn btn-outline-primary category-btn" data-filter="devops">DevOps والسحابة</button>
+                    <button class="btn btn-outline-primary category-btn" data-filter="ai">الذكاء الاصطناعي</button>
+                    <button class="btn btn-outline-primary category-btn" data-filter="security">الأمن والشبكات</button>
+                    <button class="btn btn-outline-primary category-btn" data-filter="iot">إنترنت الأشياء</button>
+                </div>
+            </div>
+
+            <div class="row g-4 services-container">
+
+                <!-- تطوير مواقع الويب -->
+                <div class="col-lg-4 col-md-6" data-category="web">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="bi bi-laptop"></i></div>
+                        <div class="service-content">
+                            <h5>تطوير مواقع الويب</h5>
+                            <p>تصميم وتطوير مواقع ويب تفاعلية وسريعة الاستجابة باستخدام أحدث التقنيات والأطر البرمجية.</p>
+                            <button class="btn btn-sm btn-outline-primary mt-2 toggle-features" type="button" data-bs-toggle="collapse" data-bs-target="#webFeatures">
+                                عرض التفاصيل <i class="bi bi-chevron-down ms-1"></i>
+                            </button>
+                            <div class="service-features mt-2 collapse" id="webFeatures">
+                                <ul>
+                                    <li>تطوير بتقنيات HTML5, CSS3, JavaScript</li>
+                                    <li>إطارات عمل متقدمة (Laravel, Bootstrap)</li>
+                                    <li>تصميم متجاوب لجميع الشاشات</li>
+                                    <li>تحسين محركات البحث (SEO)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- تطبيقات الموبايل -->
+                <div class="col-lg-4 col-md-6" data-category="mobile">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="bi bi-phone"></i></div>
+                        <div class="service-content">
+                            <h5>تطبيقات الموبايل</h5>
+                            <p>بناء تطبيقات جوال متعددة المنصات باستخدام Flutter مع أداء عالي وتجربة مستخدم متميزة.</p>
+                            <button class="btn btn-sm btn-outline-primary mt-2 toggle-features" type="button" data-bs-toggle="collapse" data-bs-target="#mobileFeatures">
+                                عرض التفاصيل <i class="bi bi-chevron-down ms-1"></i>
+                            </button>
+                            <div class="service-features mt-2 collapse" id="mobileFeatures">
+                                <ul>
+                                    <li>تطوير متعدد المنصات (iOS و Android)</li>
+                                    <li>ربط مع خدمات Firebase السحابية</li>
+                                    <li>واجهات مستخدم جذابة وسهلة الاستخدام</li>
+                                    <li>دمج خرائط Google وخدمات الطرف الثالث</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- برامج سطح المكتب -->
+                <div class="col-lg-4 col-md-6" data-category="desktop">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="bi bi-window"></i></div>
+                        <div class="service-content">
+                            <h5>برامج سطح المكتب</h5>
+                            <p>تطوير تطبيقات سطح المكتب باستخدام .NET مع واجهات مستخدم بديهية وأداء عالي.</p>
+                            <button class="btn btn-sm btn-outline-primary mt-2 toggle-features" type="button" data-bs-toggle="collapse" data-bs-target="#desktopFeatures">
+                                عرض التفاصيل <i class="bi bi-chevron-down ms-1"></i>
+                            </button>
+                            <div class="service-features mt-2 collapse" id="desktopFeatures">
+                                <ul>
+                                    <li>تطوير بواسطة .NET (WinForms, WPF)</li>
+                                    <li>واجهات مستخدم غنية وسهلة الاستخدام</li>
+                                    <li>تكامل مع قواعد البيانات المحلية</li>
+                                    <li>حلول مخصصة للاحتياجات التجارية</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- قواعد البيانات وAPIs -->
+                <div class="col-lg-4 col-md-6" data-category="database">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="bi bi-database"></i></div>
+                        <div class="service-content">
+                            <h5>قواعد البيانات وواجهات API</h5>
+                            <p>تصميم وإدارة قواعد البيانات وبناء واجهات برمجية قابلة للتوسع وآمنة.</p>
+                            <button class="btn btn-sm btn-outline-primary mt-2 toggle-features" type="button" data-bs-toggle="collapse" data-bs-target="#databaseFeatures">
+                                عرض التفاصيل <i class="bi bi-chevron-down ms-1"></i>
+                            </button>
+                            <div class="service-features mt-2 collapse" id="databaseFeatures">
+                                <ul>
+                                    <li>تصميم قواعد بيانات (MySQL, SQL Server, Oracle)</li>
+                                    <li>بناء RESTful APIs متقدمة</li>
+                                    <li>تحسين أداء قواعد البيانات</li>
+                                    <li>حلول قواعد البيانات السحابية (Firebase)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DevOps والسحابة -->
+                <div class="col-lg-4 col-md-6" data-category="devops">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="bi bi-cloud-arrow-up"></i></div>
+                        <div class="service-content">
+                            <h5>DevOps والحلول السحابية</h5>
+                            <p>خدمات النشر والإدارة السحابية باستخدام أحدث أدوات DevOps لضمان كفاءة وأمان التطبيقات.</p>
+                            <button class="btn btn-sm btn-outline-primary mt-2 toggle-features" type="button" data-bs-toggle="collapse" data-bs-target="#devopsFeatures">
+                                عرض التفاصيل <i class="bi bi-chevron-down ms-1"></i>
+                            </button>
+                            <div class="service-features mt-2 collapse" id="devopsFeatures">
+                                <ul>
+                                    <li>إدارة الحاويات باستخدام Docker</li>
+                                    <li>نشر على منصات سحابية (AWS, Azure)</li>
+                                    <li>إعداد أنظمة CI/CD متكاملة</li>
+                                    <li>إدارة الإصدارات باستخدام Git</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- حلول Firebase -->
+                <div class="col-lg-4 col-md-6" data-category="devops">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="bi bi-fire"></i></div>
+                        <div class="service-content">
+                            <h5>حلول Firebase</h5>
+                            <p>تطبيق خدمات Firebase المتقدمة مثل المصادقة، Firestore، Realtime Database، Cloud Functions، والاستضافة السحابية.</p>
+                            <button class="btn btn-sm btn-outline-primary mt-2 toggle-features" type="button" data-bs-toggle="collapse" data-bs-target="#firebaseFeatures">
+                                عرض التفاصيل <i class="bi bi-chevron-down ms-1"></i>
+                            </button>
+                            <div class="service-features mt-2 collapse" id="firebaseFeatures">
+                                <ul>
+                                    <li>مصادقة المستخدم وإدارة الحسابات</li>
+                                    <li>قاعدة بيانات Firestore وRealtime Database</li>
+                                    <li>وظائف السحابة (Cloud Functions)</li>
+                                    <li>الاستضافة والتوزيع السحابي للتطبيقات</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- الذكاء الاصطناعي وتحليل البيانات -->
+                <div class="col-lg-4 col-md-6" data-category="ai">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="bi bi-cpu"></i></div>
+                        <div class="service-content">
+                            <h5>الذكاء الاصطناعي وتحليل البيانات</h5>
+                            <p>تطوير حلول ذكية وتحليل البيانات الكبيرة باستخدام Python وأطر العمل المتقدمة.</p>
+                            <button class="btn btn-sm btn-outline-primary mt-2 toggle-features" type="button" data-bs-toggle="collapse" data-bs-target="#aiFeatures">
+                                عرض التفاصيل <i class="bi bi-chevron-down ms-1"></i>
+                            </button>
+                            <div class="service-features mt-2 collapse" id="aiFeatures">
+                                <ul>
+                                    <li>Pandas وNumPy لتحليل البيانات</li>
+                                    <li>نماذج تعلم الآلة (Scikit-learn, TensorFlow)</li>
+                                    <li>تصور البيانات وتحليلها بشكل متقدم</li>
+                                    <li>حلول الرؤية الحاسوبية باستخدام OpenCV</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- الشبكات والأمن -->
+                <div class="col-lg-4 col-md-6" data-category="security">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="bi bi-shield-lock"></i></div>
+                        <div class="service-content">
+                            <h5>أمن المعلومات والشبكات</h5>
+                            <p>حلول أمنية متكاملة لحماية البيانات والشبكات وتأمين التطبيقات من الاختراقات.</p>
+                            <button class="btn btn-sm btn-outline-primary mt-2 toggle-features" type="button" data-bs-toggle="collapse" data-bs-target="#securityFeatures">
+                                عرض التفاصيل <i class="bi bi-chevron-down ms-1"></i>
+                            </button>
+                            <div class="service-features mt-2 collapse" id="securityFeatures">
+                                <ul>
+                                    <li>تأمين الشبكات والتطبيقات</li>
+                                    <li>اختبار الاختراق باستخدام Kali Linux</li>
+                                    <li>تحليل الضعف بواسطة Nmap وWireshark</li>
+                                    <li>تطبيق بروتوكولات أمنية متقدمة</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- إنترنت الأشياء -->
+                <div class="col-lg-4 col-md-6" data-category="iot">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="bi bi-lightning-charge"></i></div>
+                        <div class="service-content">
+                            <h5>إنترنت الأشياء (IoT)</h5>
+                            <p>تصميم وتنفيذ حلول إنترنت الأشياء المتصلة بالبرمجيات والتطبيقات.</p>
+                            <button class="btn btn-sm btn-outline-primary mt-2 toggle-features" type="button" data-bs-toggle="collapse" data-bs-target="#iotFeatures">
+                                عرض التفاصيل <i class="bi bi-chevron-down ms-1"></i>
+                            </button>
+                            <div class="service-features mt-2 collapse" id="iotFeatures">
+                                <ul>
+                                    <li>أنظمة IoT متصلة بالسحابة</li>
+                                    <li>معالجة بيانات المستشعرات</li>
+                                    <li>واجهات تحكم ومراقبة في الوقت الحقيقي</li>
+                                    <li>تكامل مع تطبيقات الموبايل والويب</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- صيانة التطبيقات -->
+                <div class="col-lg-4 col-md-6" data-category="devops">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="bi bi-gear"></i></div>
+                        <div class="service-content">
+                            <h5>صيانة التطبيقات</h5>
+                            <p>توفير دعم مستمر للتطبيقات، تحديثات دورية، وتحسينات الأداء لضمان استقرار التطبيقات وجاهزيتها دائمًا.</p>
+                            <button class="btn btn-sm btn-outline-primary mt-2 toggle-features" type="button" data-bs-toggle="collapse" data-bs-target="#maintenanceFeatures">
+                                عرض التفاصيل <i class="bi bi-chevron-down ms-1"></i>
+                            </button>
+                            <div class="service-features mt-2 collapse" id="maintenanceFeatures">
+                                <ul>
+                                    <li>تحديثات دورية للتطبيقات</li>
+                                    <li>تحسين الأداء وإصلاح الأخطاء</li>
+                                    <li>دعم مستمر على مدار الساعة</li>
+                                    <li>تخصيص وصيانة الوظائف حسب الحاجة</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- التجارة الإلكترونية -->
+                <div class="col-lg-4 col-md-6" data-category="web">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="bi bi-cart"></i></div>
+                        <div class="service-content">
+                            <h5>حلول التجارة الإلكترونية</h5>
+                            <p>بناء متاجر إلكترونية متكاملة مع أنظمة دفع آمنة وإدارة مخزون ومتابعة طلبات.</p>
+                            <button class="btn btn-sm btn-outline-primary mt-2 toggle-features" type="button" data-bs-toggle="collapse" data-bs-target="#ecommerceFeatures">
+                                عرض التفاصيل <i class="bi bi-chevron-down ms-1"></i>
+                            </button>
+                            <div class="service-features mt-2 collapse" id="ecommerceFeatures">
+                                <ul>
+                                    <li>بوابات دفع آمنة ومتكاملة</li>
+                                    <li>لوحات تحكم لإدارة الطلبات والمخزون</li>
+                                    <li>تخصيص منصات التجارة الإلكترونية حسب الحاجة</li>
+                                    <li>تحسين تجربة المستخدم للمتجر</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // تصفية الخدمات حسب الفئة
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.category-btn');
+            const serviceItems = document.querySelectorAll('.services-container > div');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // إزالة النشاط من جميع الأزرار
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // إضافة النشاط للزر المختار
+                    this.classList.add('active');
+                    
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    serviceItems.forEach(item => {
+                        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // إضافة تأثير للزر عند النقر لعرض التفاصيل
+            const toggleButtons = document.querySelectorAll('.toggle-features');
+            toggleButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const icon = this.querySelector('i');
+                    if (icon) {
+                        icon.classList.toggle('bi-chevron-down');
+                        icon.classList.toggle('bi-chevron-up');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
